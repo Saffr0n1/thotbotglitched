@@ -1,0 +1,32 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import {Content as FunAbout} from "@/pages/fun/whatisfun.md";
+import TopPages from "./TopPages.astro";
+
+const pageTitle = "Fun";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <div class="flex flex-col gap-4">
+    <div class="text-2xl mb-8 text-stone-700 dark:text-stone-200">
+      nuF
+    </div>
+
+    <div
+      class="nobloger-animate transition-opacity duration-300 ease-in-out opacity-0"
+    >
+      <article
+        class="prose dark:prose-invert prose-stone md:prose-lg prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl"
+      >
+      <FunAbout/>
+      </article>
+    </div>
+    <hr class="my-8 border-t border-stone-300 dark:border-stone-700" />
+    <article
+        class="prose dark:prose-invert prose-stone md:prose-lg prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl text-stone-700 dark:text-stone-200"
+      >
+      <h2 class="text-stone-700 dark:text-stone-200">Pages ranked by views</h2>
+    </article>
+    <TopPages/>
+  </div>
+</BaseLayout>

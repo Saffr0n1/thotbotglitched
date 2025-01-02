@@ -33,3 +33,8 @@ export function readingTime(path: string) {
 export function urlFromBase(base: string, url: string): string {
   return `${base.replace(/\/$/, '')}/${url.replace(/^\//, '')}`;
 }
+
+export function normalizePath(path : string | null | undefined) {
+  if (!path) return '/';
+  return path.endsWith('/') ? path : path + '/';
+}

@@ -1,0 +1,38 @@
+---
+import { supabase } from "@lib/supabase";
+---
+
+<ul id="top-pages"></ul>
+
+<script>
+  import { supabase } from "@lib/supabase";
+  
+  async function loadTopPages() {
+    try {
+      const { data, error } = await supabase
+        .from("page_views")
+        .select("page_slug, views, page_name")
+        .order("views", { ascending: false })
+        .limit(20);
+
+      if (error) throw error;
+      
+      const topPagesList = document.getElementById('top-pages');
+      if (!topPagesList || !data) return;
+      
+      topPagesList.innerHTML = data.map(({ page_slug, views, page_name }) => `
+        <li class="flex justify-between items-center">
+          <a class="font-semibold hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"
+             href="${page_slug}">
+            :: ${page_name}
+          </a>
+          <span class="ml-4 text-right">${views} views</span>
+        </li>
+      `).join('');
+    } catch (err) {
+      console.error("Error fetching top pages:", err);
+    }
+  }
+  
+  loadTopPages();
+</script>

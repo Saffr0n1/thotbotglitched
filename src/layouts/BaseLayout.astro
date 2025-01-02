@@ -3,9 +3,42 @@ import "@/styles/global.css";
 import Head from "./Head.astro";
 import Header from "@/components/Header/Header.astro";
 import Footer from "@/components/Footer/Footer.astro";
+// import { incrementPageView } from "@lib/supabase";
 
 const { pageTitle } = Astro.props;
+const { pathname } = Astro.url;
+// const isBlogPost = pathname.includes("/posts/");
+// const isMainTagPage = pathname.endsWith("/tags");
+// if (isMainTagPage) {
+//   await incrementPageView("Tags", pathname);
+// } else if (!isBlogPost) {
+//   await incrementPageView(pageTitle, pathname);
+// }
 ---
+
+<script>
+  import { incrementPageView } from "@lib/supabase";
+  import { normalizePath } from "@lib/utils";
+  
+  // Get these values from data attributes
+  const pathname = document.querySelector('meta[name="page-path"]')?.getAttribute('content');
+  const normalizedPath = normalizePath(pathname);
+  const pageTitle = document.querySelector('meta[name="page-title"]')?.getAttribute('content');
+  const isMainTagPage = normalizedPath?.endsWith("/tags/");
+  console.log(isMainTagPage);
+  const isBlogPost = normalizedPath?.includes("/posts/");
+
+  // Run the increment on the client side
+  if (isMainTagPage) {
+    incrementPageView("Tags", normalizedPath);
+  } else if (!isBlogPost) {
+    incrementPageView(pageTitle, normalizedPath);
+  }
+</script>
+
+<!-- Add meta tags to pass data to client script -->
+<meta name="page-path" content={pathname} />
+<meta name="page-title" content={pageTitle} />
 
 <html lang="en">
   <Head pageTitle={pageTitle} />

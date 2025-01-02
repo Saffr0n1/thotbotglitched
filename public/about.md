@@ -1,7 +1,6 @@
 ---
 
 author: abi
-favicon: ./images/favicon.ico
 
 ---
 

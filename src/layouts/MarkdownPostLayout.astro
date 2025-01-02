@@ -1,8 +1,29 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import Ztag from "@/components/Blog/Ztag.astro";
+// import { incrementPageView } from "@lib/supabase";
+
 const { frontmatter } = Astro.props;
+const { pathname } = Astro.url;
+
+// await incrementPageView(frontmatter.title, pathname);
 ---
+
+<script>
+  import { incrementPageView } from "@lib/supabase";
+  import { normalizePath } from "@lib/utils";
+  
+  const title = document.querySelector('meta[name="post-title"]')?.getAttribute('content');
+  const path = document.querySelector('meta[name="post-path"]')?.getAttribute('content');
+  const normalizedPath = normalizePath(path);
+  
+  if (title && path) {
+    incrementPageView(title, normalizedPath);
+  }
+</script>
+
+<meta name="post-title" content={frontmatter.title} />
+<meta name="post-path" content={pathname} />
 
 <BaseLayout pageTitle={frontmatter.title}>
   <div class="text-stone-800 dark:text-stone-200">
