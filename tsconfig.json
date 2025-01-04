@@ -6,6 +6,8 @@
     "paths": {
       "@*": ["./src/*"],
       "#*": ["./public/*"]
-    }
-  }
+    },
+    "noImplicitAny": false,
+  },
+  "exclude": ["src/pages/fun/GraphView.astro"]
 }

@@ -3,6 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import {Content as FunAbout} from "@/pages/fun/whatisfun.md";
 import TopPages from "./TopPages.astro";
 import Calendar from "./Calendar.astro";
+import GraphView from "./GraphView.astro";
 
 const pageTitle = "Fun";
 ---
@@ -19,6 +20,13 @@ const pageTitle = "Fun";
       </article>
     </div>
     
+    <hr class="my-8 border-t border-stone-300 dark:border-stone-700" />
+    
+    <article class="prose dark:prose-invert prose-stone md:prose-lg prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl text-stone-700 dark:text-stone-200">
+      <h2 class="text-stone-700 dark:text-stone-200">Graph View</h2>
+    </article>
+    <GraphView/>
+
     <hr class="my-8 border-t border-stone-300 dark:border-stone-700" />
     
     <article class="prose dark:prose-invert prose-stone md:prose-lg prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl text-stone-700 dark:text-stone-200">

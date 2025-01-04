@@ -8,6 +8,16 @@ export default {
 			'sans': ['Hack'],
 		},
 		extend: {
+			colors: {
+				'custom-red': {
+					DEFAULT: '#ff6b6b',
+					light: '#ff8787'
+				},
+				'custom-red-inverted': {
+					DEFAULT: '#009494',
+					light: '#007878'
+				}
+			},
 			typography: ({ theme }) => ({
 				DEFAULT: {
 					css: {

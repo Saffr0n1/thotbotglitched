@@ -25,7 +25,7 @@ import { supabase } from "@lib/supabase";
         .map(
           ({ page_slug, views, page_name }) => `
         <li class="flex justify-between items-center">
-          <a class="font-semibold hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"
+          <a class="font-semibold hover:text-custom-red dark:hover:text-custom-red-light transition-colors duration-300 ease-in-out"
              href="${page_slug}">
             :: ${page_name}
           </a>

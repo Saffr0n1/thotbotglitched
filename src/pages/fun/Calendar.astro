@@ -103,8 +103,8 @@ const monthLabels = getMonthLabels();
     }
 
     :global(.dark) #calendar-tooltip {
-        background-color: rgb(28, 25, 23); /* stone-800 */
-        border-color: rgb(68, 64, 60); /* stone-700 */
+        background-color: #1c1917; /* stone-800 */
+        border-color: #44403c; /* stone-700 */
         color: white;
     }
 </style>
@@ -133,7 +133,7 @@ const monthLabels = getMonthLabels();
                                 <div
                                     class={`
                     w-3 h-3 rounded-sm cursor-pointer
-                    ${hasPost ? "bg-emerald-600 hover:bg-emerald-500" : "bg-stone-200 dark:bg-stone-800"}
+                    ${hasPost ? "bg-custom-red hover:bg-custom-red-light" : "bg-stone-200 dark:bg-stone-800"}
                   `}
                                     data-date={day.date.toLocaleDateString()}
                                     data-has-posts={hasPost.toString()}
@@ -194,7 +194,7 @@ const monthLabels = getMonthLabels();
             tooltip.innerHTML = `
                 <div class="text-sm font-bold mb-1 text-stone-700 dark:text-stone-200">${date}</div>
                 ${posts.map((post: { title: string; url: string }) => `
-                    <a href="${post.url}" class="block text-sm hover:text-emerald-500 dark:hover:text-emerald-400 text-stone-700 dark:text-stone-200">
+                    <a href="${post.url}" class="block text-sm hover:text-custom-red dark:hover:text-custom-red-light text-stone-700 dark:text-stone-200">
                         :: ${post.title}
                     </a>
                 `).join("")}
@@ -245,7 +245,7 @@ const monthLabels = getMonthLabels();
           ${posts
               .map(
                   (post: { title: string; url: string }) => `
-          <a href="${post.url}" class="block text-sm hover:text-emerald-500 dark:hover:text-emerald-400">
+          <a href="${post.url}" class="block text-sm hover:text-custom-red dark:hover:text-custom-red-light">
             :: ${post.title}
           </a>
         `,

@@ -40,7 +40,7 @@ const { posts } = Astro.props as Props;
   </div>
   <div class="flex flex-col gap-2">
     <a
-      class="hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out nobloger-animate transition-opacity duration-300 ease-in-out opacity-0"
+      class="hover:text-custom-red dark:hover:text-custom-red-light transition-colors duration-300 ease-in-out nobloger-animate transition-opacity duration-300 ease-in-out opacity-0"
       href={urlFromBase(base, "tags")}
     >
       {":: view all tags"}
@@ -59,7 +59,7 @@ const { posts } = Astro.props as Props;
           <div class="flex flex-nowrap my-1 justify-between">
             <div class="flex grow flex-nowrap overflow-hidden whitespace-nowrap">
               <a
-                class="font-semibold hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"
+                class="font-semibold hover:text-custom-red dark:hover:text-custom-red-light transition-colors duration-300 ease-in-out"
                 href={post.url}
               >
                 {post.frontmatter.title}

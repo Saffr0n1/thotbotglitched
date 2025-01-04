@@ -1,0 +1,210 @@
+---
+const posts = await Astro.glob("@/pages/posts/*.md");
+const tags = [...new Set(posts.map((post) => post.frontmatter.tags).flat())];
+
+const nodes = [
+    ...posts.map((post) => ({
+        id: post.url,
+        name: post.frontmatter.title,
+        type: "post",
+        degree: post.frontmatter.tags.length,
+    })),
+    ...tags.map((tag) => ({
+        id: `/tags/${tag}`,
+        name: tag,
+        type: "tag",
+        degree: posts.filter((post) => post.frontmatter.tags.includes(tag))
+            .length,
+    })),
+];
+
+const links = posts.flatMap((post) =>
+    post.frontmatter.tags.map((tag) => ({
+        source: post.url,
+        target: `/tags/${tag}`,
+    })),
+);
+
+const highlightColor = "#ff6b6b";
+---
+
+<div
+    class="graph-container w-full h-[600px] relative bg-stone-100 dark:bg-stone-900"
+>
+    <div
+        id="graph"
+        data-nodes={JSON.stringify(nodes)}
+        data-links={JSON.stringify(links)}
+        data-highlight-color={highlightColor}
+    >
+    </div>
+</div>
+
+<script>
+    import * as d3 from "d3";
+
+    const graphElement = document.getElementById("graph");
+    const graphData = {
+        nodes: JSON.parse(graphElement.dataset.nodes),
+        links: JSON.parse(graphElement.dataset.links),
+    };
+    const highlightColor = graphElement.dataset.highlightColor;
+
+    function createGraph() {
+        const width = document.querySelector(".graph-container").clientWidth;
+        const height = 600;
+
+        const svg = d3
+            .select("#graph")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        const zoom = d3
+            .zoom()
+            .scaleExtent([0.1, 4])
+            .on("zoom", (event) => {
+                g.attr("transform", event.transform);
+            });
+
+        svg.call(zoom);
+
+        const g = svg.append("g");
+
+        const simulation = d3
+            .forceSimulation(graphData.nodes)
+            .force(
+                "link",
+                d3
+                    .forceLink(graphData.links)
+                    .id((d) => d.id)
+                    .distance(100),
+            )
+            .force("charge", d3.forceManyBody().strength(-100))
+            .force("center", d3.forceCenter(width / 2, height / 2));
+
+        const link = g
+            .append("g")
+            .selectAll("line")
+            .data(graphData.links)
+            .join("line")
+            .attr("stroke", "#999")
+            .attr("stroke-opacity", 0.6);
+
+        const node = g
+            .append("g")
+            .selectAll("g")
+            .data(graphData.nodes)
+            .style("cursor", "pointer")
+            .join("g")
+            .call(
+                d3
+                    .drag()
+                    .on("start", dragstarted)
+                    .on("drag", dragged)
+                    .on("end", dragended),
+            );
+
+        node.append("circle")
+            .attr("r", (d) => Math.sqrt(d.degree) * 5)
+            .style("cursor", "pointer")
+            .attr("fill", (d) => (d.type === "post" ? "#777DA7" : "#94C9A9"));
+
+        node.append("text")
+            .text((d) => {
+                const maxLength = 20;
+                return d.name.length > maxLength
+                    ? d.name.slice(0, maxLength) + "..."
+                    : d.name;
+            })
+            .attr("x", 12)
+            .attr("y", 4)
+            .style("font-size", "12px")
+            .attr("fill", "currentColor");
+
+        node.on("mouseover", highlight)
+            .on("mouseout", unhighlight)
+            .on("click", handleClick);
+
+        function highlight(event, d) {
+            const connectedNodes = new Set();
+            graphData.links.forEach((link) => {
+                if (link.source.id === d.id) connectedNodes.add(link.target.id);
+                if (link.target.id === d.id) connectedNodes.add(link.source.id);
+            });
+
+            node.style("opacity", (n) =>
+                n.id === d.id || connectedNodes.has(n.id) ? 1 : 0.1,
+            );
+            link.style("opacity", (l) =>
+                l.source.id === d.id || l.target.id === d.id ? 1 : 0.1,
+            ).style("stroke", (l) =>
+                l.source.id === d.id || l.target.id === d.id
+                    ? highlightColor
+                    : "#999",
+            );
+
+            node.select("circle").style("fill", (n) =>
+                n.id === d.id || connectedNodes.has(n.id)
+                    ? highlightColor
+                    : n.type === "post"
+                      ? "#777DA7"
+                      : "#94C9A9",
+            );
+        }
+
+        function unhighlight() {
+            node.style("opacity", 1);
+            link.style("opacity", 0.6).style("stroke", "#999");
+
+            node.select("circle").style("fill", (d) =>
+                d.type === "post" ? "#777DA7" : "#94C9A9",
+            );
+        }
+
+        function handleClick(event, d) {
+            if (event.defaultPrevented) return;
+            window.location.href = d.id;
+        }
+
+        function dragstarted(event) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            event.subject.fx = event.subject.x;
+            event.subject.fy = event.subject.y;
+        }
+
+        function dragged(event) {
+            event.subject.fx = event.x;
+            event.subject.fy = event.y;
+        }
+
+        function dragended(event) {
+            if (!event.active) simulation.alphaTarget(0);
+            event.subject.fx = null;
+            event.subject.fy = null;
+        }
+
+        simulation.on("tick", () => {
+            link.attr("x1", (d) => d.source.x)
+                .attr("y1", (d) => d.source.y)
+                .attr("x2", (d) => d.target.x)
+                .attr("y2", (d) => d.target.y);
+
+            node.attr("transform", (d) => `translate(${d.x},${d.y})`);
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", createGraph);
+</script>
+
+<style>
+    .graph-container {
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    #graph {
+        width: 100%;
+        height: 100%;
+    }
+</style>
