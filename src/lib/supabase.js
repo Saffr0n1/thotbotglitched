@@ -6,7 +6,6 @@ const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export async function getPageViews(pageSlug) {
-    console.log(pageSlug);
   try {
     const { data, error } = await supabase
       .from("page_views")
@@ -28,8 +27,6 @@ export async function getPageViews(pageSlug) {
 
 
 export async function incrementPageView(page_name, page_slug) {
-    console.log(page_name);
-    console.log(page_slug);
     const { error } = await supabase.rpc("increment_view", { page_name_param: page_name, page_slug_param: page_slug });
     if (error) {
         console.error("Error incrementing page view:", error);

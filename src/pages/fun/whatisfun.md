@@ -2,4 +2,4 @@
 
 ---
 
-A different way to interact with the blog
+This is what I do instead of actually writing anything

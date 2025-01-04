@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import {Content as FunAbout} from "@/pages/fun/whatisfun.md";
 import TopPages from "./TopPages.astro";
+import Calendar from "./Calendar.astro";
 
 const pageTitle = "Fun";
 ---
@@ -12,19 +13,22 @@ const pageTitle = "Fun";
       nuF
     </div>
 
-    <div
-      class="nobloger-animate transition-opacity duration-300 ease-in-out opacity-0"
-    >
-      <article
-        class="prose dark:prose-invert prose-stone md:prose-lg prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl"
-      >
-      <FunAbout/>
+    <div class="nobloger-animate transition-opacity duration-300 ease-in-out opacity-0">
+      <article class="prose dark:prose-invert prose-stone md:prose-lg prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl">
+        <FunAbout/>
       </article>
     </div>
+    
     <hr class="my-8 border-t border-stone-300 dark:border-stone-700" />
-    <article
-        class="prose dark:prose-invert prose-stone md:prose-lg prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl text-stone-700 dark:text-stone-200"
-      >
+    
+    <article class="prose dark:prose-invert prose-stone md:prose-lg prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl text-stone-700 dark:text-stone-200">
+      <h2 class="text-stone-700 dark:text-stone-200">Post calendar</h2>
+    </article>
+    <Calendar/>
+    
+    <hr class="my-8 border-t border-stone-300 dark:border-stone-700" />
+    
+    <article class="prose dark:prose-invert prose-stone md:prose-lg prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl text-stone-700 dark:text-stone-200">
       <h2 class="text-stone-700 dark:text-stone-200">Pages ranked by views</h2>
     </article>
     <TopPages/>
