@@ -37,6 +37,9 @@ export default {
 						'code::after': {
 							content: 'normal',
 						},
+						blockquote: {
+							quotes: 'none', // Remove auto-generated quotes
+						},
 					},
 				},
 				invert: {
