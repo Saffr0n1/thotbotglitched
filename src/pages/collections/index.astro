@@ -1,0 +1,78 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CollectionBox from "./CollectionBox.astro";
+
+const posts = await Astro.glob("@/pages/posts/*.md");
+
+const postMap = {};
+posts.forEach((post) => {
+    postMap[post.url as string] = post;
+});
+
+interface Collection {
+    title: string;
+    posts: any[];
+}
+
+const collections: Collection[] = [
+    // {
+    //     title: "Test Collection 1",
+    //     posts: [
+    //         postMap["/posts/20250207-README"],
+    //         postMap["/posts/20250220-Ratings"],
+    //         postMap["/posts/20250222-Discipline"],
+    //     ].filter(Boolean),
+    // },
+    // {
+    //     title: "Test Collection 2",
+    //     posts: [
+    //         postMap["/posts/20250207-README"],
+    //         postMap["/posts/20250220-Ratings"],
+    //     ].filter(Boolean),
+    // },
+    // {
+    //     title: "Test Collection 2",
+    //     posts: [
+    //         postMap["/posts/20250207-README"],
+    //         postMap["/posts/20250220-Ratings"],
+    //     ].filter(Boolean),
+    // },
+    // {
+    //     title: "Test Collection 2",
+    //     posts: [
+    //         postMap["/posts/20250207-README"],
+    //         postMap["/posts/20250220-Ratings"],
+    //     ].filter(Boolean),
+    // },
+    // {
+    //     title: "Test Collection 2",
+    //     posts: [
+    //         postMap["/posts/20250207-README"],
+    //         postMap["/posts/20250220-Ratings"],
+    //         postMap["/posts/20250222-Discipline"],
+    //         postMap["/posts/20250222-Discipline"],
+    //         postMap["/posts/20250222-Discipline"],
+    //         postMap["/posts/20250222-Discipline"],
+    //         postMap["/posts/20250222-Discipline"],
+    //     ].filter(Boolean),
+    // },
+];
+const hasCollections = collections.length > 0;
+---
+
+<BaseLayout pageTitle="Collections">
+    <div class="flex flex-col gap-8">
+        <h1 class="text-2xl text-stone-700 dark:text-stone-200">snoitcelloC</h1>
+
+        {
+            hasCollections
+                ? collections.map((collection) => (
+                      <CollectionBox
+                          title={collection.title}
+                          posts={collection.posts}
+                      />
+                  ))
+                : null
+        }
+    </div>
+</BaseLayout>

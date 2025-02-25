@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
 title: "Discipline"
-tags: ["meta", "behaviors"]
+tags: ["behavior", "life-framework"]
 pubDate: 2025-02-22
 archived: false
 description: "Greedy decision making, goals, and weaponized procrastination."

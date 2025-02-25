@@ -1,0 +1,143 @@
+---
+import { formatDate } from "@/lib/utils";
+
+const { title = "Untitled Collection", posts = []} = Astro.props;
+const postsPerPage = 3;
+const totalPages = Math.ceil(posts.length / postsPerPage);
+---
+
+<div
+    class="rounded-md px-2 py-1 bg-slate-100 mb-2 focus:outline-none bg-stone-100 dark:bg-stone-900 transition-colors duration-200"
+>
+    <h2 class="text-xl font-bold text-stone-700 dark:text-stone-300 mb-4">
+        {title}
+    </h2>
+
+    <div
+        id={title ? title.replace(/\s+/g, "-").toLowerCase() : "untitled"}
+        class="collection-container relative"
+        data-current-page="0"
+        data-total-pages={totalPages}
+        data-posts-per-page={postsPerPage}
+    >
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {
+                posts.map((post, index) => (
+                    <div class="post md:aspect-square sm:aspect-square" data-index={index}>
+                        <a
+                            href={post.url}
+                            class="group flex flex-col h-full p-4 rounded-lg border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-all duration-300 ease-in-out"
+                        >
+                            <h3 class="text-md font-semibold text-ellipsis dark:text-stone-400 group-hover:text-black dark:group-hover:text-white">
+                                {post.frontmatter.title}
+                            </h3>
+                            <p class="text-sm text-stone-500 dark:text-stone-400 group-hover:text-black dark:group-hover:text-white">
+                                {formatDate(new Date(post.frontmatter.pubDate))}
+                            </p>
+                            <p class="text-stone-500 dark:text-stone-400 text-sm italic group-hover:text-black dark:group-hover:text-white overflow-hidden">
+                                {post.frontmatter.description}
+                            </p>
+                        </a>
+                    </div>
+                ))
+            }
+        </div>
+
+        {
+            totalPages > 1 && (
+                <div class="flex justify-end gap-2 mt-4">
+                    <button
+                        class="prev-btn p-2 bg-stone-100 dark:bg-stone-700 text-stone-700 dark:text-stone-300 rounded-full shadow-md hover:bg-stone-200 dark:hover:bg-stone-600 transition-colors"
+                        disabled={true}
+                    >
+                        ←
+                    </button>
+                    <button class="next-btn p-2 bg-stone-100 dark:bg-stone-700 text-stone-700 dark:text-stone-300 rounded-full shadow-md hover:bg-stone-200 dark:hover:bg-stone-600 transition-colors">
+                        →
+                    </button>
+                </div>
+            )
+        }
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        document
+            .querySelectorAll(".collection-container")
+            .forEach((container) => {
+                const typedContainer = container as HTMLElement;
+                updatePostVisibility(typedContainer);
+
+                const prevBtn = container.querySelector(".prev-btn");
+                const nextBtn = container.querySelector(".next-btn");
+
+                if (prevBtn) {
+                    prevBtn.addEventListener("click", () => {
+                        const currentPage = parseInt(
+                            typedContainer.dataset.currentPage || "0",
+                        );
+                        if (currentPage > 0) {
+                            typedContainer.dataset.currentPage = (
+                                currentPage - 1
+                            ).toString();
+                            updatePostVisibility(typedContainer);
+                            updateButtonStates(typedContainer);
+                        }
+                    });
+                }
+
+                if (nextBtn) {
+                    nextBtn.addEventListener("click", () => {
+                        const currentPage = parseInt(
+                            typedContainer.dataset.currentPage || "0",
+                        );
+                        const totalPages = parseInt(
+                            typedContainer.dataset.totalPages || "1",
+                        );
+                        if (currentPage < totalPages - 1) {
+                            typedContainer.dataset.currentPage = (
+                                currentPage + 1
+                            ).toString();
+                            updatePostVisibility(typedContainer);
+                            updateButtonStates(typedContainer);
+                        }
+                    });
+                }
+            });
+    });
+
+    function updatePostVisibility(container: HTMLElement) {
+        const currentPage = parseInt(container.dataset.currentPage || "0");
+        const postsPerPage = parseInt(container.dataset.postsPerPage || "4");
+        const startIndex = currentPage * postsPerPage;
+        const endIndex = startIndex + postsPerPage;
+
+        container.querySelectorAll(".post").forEach((post) => {
+            const typedPost = post as HTMLElement;
+            const index = parseInt(typedPost.dataset.index || "0");
+            typedPost.style.display =
+                index >= startIndex && index < endIndex ? "block" : "none";
+        });
+    }
+
+    function updateButtonStates(container: HTMLElement) {
+        const currentPage = parseInt(container.dataset.currentPage || "0");
+        const totalPages = parseInt(container.dataset.totalPages || "1");
+
+        const prevBtn = container.querySelector(
+            ".prev-btn",
+        ) as HTMLButtonElement | null;
+        const nextBtn = container.querySelector(
+            ".next-btn",
+        ) as HTMLButtonElement | null;
+
+        if (prevBtn) {
+            prevBtn.disabled = currentPage === 0;
+        }
+
+        if (nextBtn) {
+            nextBtn.disabled = currentPage === totalPages - 1;
+        }
+    }
+</script>
