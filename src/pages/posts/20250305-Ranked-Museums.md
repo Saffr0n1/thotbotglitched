@@ -42,18 +42,201 @@ I love:
 - not feeling the need to yap while also having the perfect background for hours of talking
 
 ## The Ranking
-1. The Louvre (Paris)
-2. The MET (NYC)
-<br><br><br><br><br><br>
-1. The Art Institute of Chicago (Chicago)
-2. The MFA Boston (Boston)
-3. The British Museum (London)
-<br><br><br>
-1. The MOMA (NYC)
-<br><br><br><br><br><br><br><br><br>
-1. National Air and Space Museum (Washington D.C.)
-2. The MET Cloisters (NYC)
-3. The Whitney (NYC)
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-1.  The Guggenheim (NYC)
-2.  AMNH (NYC)
+<div class="rankings-container">
+  <table class="rankings-table" data-rankings-table>
+    <thead>
+      <tr>
+        <th class="item-column">Item</th>
+        <th class="date-column" data-sort-date="2025-03-04">Mar 04, 2025</th>
+        <th class="date-column active" data-sort-date="2025-04-02">Apr 02, 2025</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>The Louvre (Paris)</th>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <th>The MET (NYC)</th>
+        <td>2</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <th>The Art Institute of Chicago (Chicago)</th>
+        <td>3</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <th>The MFA Boston (Boston)</th>
+        <td>4</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <th>The British Museum (London)</th>
+        <td>5</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <th>The MOMA (NYC)</th>
+        <td>6</td>
+        <td>6</td>
+      </tr>
+      <tr>
+        <th>National Air and Space Museum (Washington D.C.)</th>
+        <td>7</td>
+        <td>13</td>
+      </tr>
+      <tr>
+        <th>The MET Cloisters (NYC)</th>
+        <td>8</td>
+        <td>15</td>
+      </tr>
+      <tr>
+        <th>The Whitney (NYC)</th>
+        <td>9</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <th>The Guggenheim (NYC)</th>
+        <td>10</td>
+        <td>14</td>
+      </tr>
+      <tr>
+        <th>AMNH (NYC)</th>
+        <td>11</td>
+        <td>16</td>
+      </tr>
+      <tr>
+        <th>Prado (Madrid)</th>
+        <td></td>
+        <td>8</td>
+      </tr>
+      <tr>
+        <th>Reina Sofia (Madrid)</th>
+        <td></td>
+        <td>9</td>
+      </tr>
+      <tr>
+        <th>El Greco Museum (Toledo)</th>
+        <td></td>
+        <td>12</td>
+      </tr>
+      <tr>
+        <th>Picasso Museum (Barcelona)</th>
+        <td></td>
+        <td>11</td>
+      </tr>
+      <tr>
+        <th>Musée d'Orsay (Paris)</th>
+        <td></td>
+        <td>7</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .rankings-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0rem auto;
+    overflow-x: auto;
+  }
+  
+  .rankings-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'sans': ['Hack'],;
+  }
+  
+  .rankings-table th, .rankings-table td {
+    padding: 0.75rem 1rem;
+    text-align: center;
+  }
+  
+  .rankings-table th {
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .rankings-table th:hover {
+    background-color: #ff6b6b;
+  }
+  
+  .rankings-table th.active {
+    background-color: #ff6b6b;
+  }
+  
+  .rankings-table th.active::after {
+    content: "▼";
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .item-column {
+    text-align: left !important;
+    min-width: 120px;
+  }
+  
+  .rankings-table tbody tr:hover {
+    background-color: #ff6b6b;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const tables = document.querySelectorAll('table[data-rankings-table]');
+    
+    tables.forEach(table => {
+      const headers = table.querySelectorAll('th.date-column');
+      const tbody = table.querySelector('tbody');
+      const defaultSortColumn = table.querySelector('th.active') || 
+                               table.querySelector('th.date-column:last-child');
+      
+      if (defaultSortColumn) {
+        defaultSortColumn.classList.add('active');
+      }
+      
+      function sortTableByColumn(table, column, asc = true) {
+        table.querySelectorAll('th').forEach(th => th.classList.remove('active'));
+        column.classList.add('active');
+        
+        const columnIndex = Array.from(column.parentNode.children).indexOf(column);
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        
+        const sortedRows = rows.sort((a, b) => {
+          const aCellValue = a.children[columnIndex].innerText.trim();
+          const bCellValue = b.children[columnIndex].innerText.trim();
+          
+          if (aCellValue === '' && bCellValue === '') return 0;
+          if (aCellValue === '') return asc ? 1 : -1;
+          if (bCellValue === '') return asc ? -1 : 1;
+          
+          return asc ? 
+            parseInt(aCellValue) - parseInt(bCellValue) : 
+            parseInt(bCellValue) - parseInt(aCellValue);
+        });
+        
+        while (tbody.firstChild) {
+          tbody.removeChild(tbody.firstChild);
+        }
+        sortedRows.forEach(row => tbody.appendChild(row));
+      }
+      
+
+      headers.forEach(header => {
+        header.addEventListener('click', () => {
+          const isAscending = !header.classList.contains('active') || header.getAttribute('data-sort-dir') === 'desc';
+          header.setAttribute('data-sort-dir', isAscending ? 'asc' : 'desc');
+          sortTableByColumn(table, header, isAscending);
+        });
+      });
+      
+      if (defaultSortColumn) {
+        sortTableByColumn(table, defaultSortColumn, true);
+      }
+    });
+  });
+</script>
