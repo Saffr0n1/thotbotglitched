@@ -34,6 +34,12 @@ Finally, some museums are amazing but for me have faded in enjoyment as I've got
 
 ***
 
+*The Louvre*
+
+The only unexpected change from my April 2nd ranking is the apparent demotion of the most visited museum in the world, especially surprising because I thoroughly enjoyed my day there just a week prior. The space was gargantuan, the collection put many others on this list to shame, and the sense of existence and scale that a stroll through the artwork provided was unmatched. But there was just one thing that kept nagging at me as my step count summitted 25k: I was moving, seeing, taking pictures, but not really *feeling* the art. The experience was akin to watching a movie rather than reading a book—it felt unnatural to just pause at a piece and think about it for a long while. The constant stream of tour groups and *mass* of people put an urgency in my exploration that I didn't enjoy in the context of a museum.  This emotion crystallized when I made it onto the second floor: quiet, empty, surely detached by more than just ten feet from the panic below. And most importantly for this ranking: closer to how I felt exploring the MET.
+
+***
+
 A final note: museum dates. I don't think museums are great early date venues but a great date can be filtered by going to a museum. 
 
 I love:
