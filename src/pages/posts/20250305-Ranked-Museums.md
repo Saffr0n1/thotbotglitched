@@ -54,7 +54,8 @@ I love:
       <tr>
         <th class="item-column">Item</th>
         <th class="date-column" data-sort-date="2025-03-04">Mar 04, 2025</th>
-        <th class="date-column active" data-sort-date="2025-04-02">Apr 02, 2025</th>
+        <th class="date-column" data-sort-date="2025-04-02">Apr 02, 2025</th>
+        <th class="date-column active" data-sort-date="2025-05-07">May 07, 2025</th>
       </tr>
     </thead>
     <tbody>
@@ -62,14 +63,17 @@ I love:
         <th>The Louvre (Paris)</th>
         <td>1</td>
         <td>1</td>
+        <td>1</td>
       </tr>
       <tr>
         <th>The MET (NYC)</th>
         <td>2</td>
         <td>1</td>
+        <td>1</td>
       </tr>
       <tr>
         <th>The Art Institute of Chicago (Chicago)</th>
+        <td>3</td>
         <td>3</td>
         <td>3</td>
       </tr>
@@ -77,9 +81,11 @@ I love:
         <th>The MFA Boston (Boston)</th>
         <td>4</td>
         <td>4</td>
+        <td>4</td>
       </tr>
       <tr>
         <th>The British Museum (London)</th>
+        <td>5</td>
         <td>5</td>
         <td>5</td>
       </tr>
@@ -87,56 +93,73 @@ I love:
         <th>The MOMA (NYC)</th>
         <td>6</td>
         <td>6</td>
+        <td>6</td>
       </tr>
       <tr>
         <th>National Air and Space Museum (Washington D.C.)</th>
         <td>7</td>
         <td>13</td>
+        <td>14</td>
       </tr>
       <tr>
         <th>The MET Cloisters (NYC)</th>
         <td>8</td>
         <td>15</td>
+        <td>16</td>
       </tr>
       <tr>
         <th>The Whitney (NYC)</th>
         <td>9</td>
+        <td>10</td>
         <td>10</td>
       </tr>
       <tr>
         <th>The Guggenheim (NYC)</th>
         <td>10</td>
         <td>14</td>
+        <td>15</td>
       </tr>
       <tr>
         <th>AMNH (NYC)</th>
         <td>11</td>
         <td>16</td>
+        <td>17</td>
       </tr>
       <tr>
         <th>Prado (Madrid)</th>
         <td></td>
+        <td>8</td>
         <td>8</td>
       </tr>
       <tr>
         <th>Reina Sofia (Madrid)</th>
         <td></td>
         <td>9</td>
+        <td>9</td>
       </tr>
       <tr>
         <th>El Greco Museum (Toledo)</th>
         <td></td>
         <td>12</td>
+        <td>13</td>
       </tr>
       <tr>
         <th>Picasso Museum (Barcelona)</th>
         <td></td>
+        <td>11</td>
         <td>11</td>
       </tr>
       <tr>
         <th>Musée d'Orsay (Paris)</th>
         <td></td>
         <td>7</td>
+        <td>7</td>
+      </tr>
+      <tr>
+        <th>Tokyo National Museum</th>
+        <td></td>
+        <td></td>
+        <td>12</td>
       </tr>
     </tbody>
   </table>

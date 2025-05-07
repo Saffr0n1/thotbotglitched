@@ -14,7 +14,8 @@ description: "Ranking the cities (and regions) I've spent nontrivial time in on 
       <tr>
         <th class="item-column">Item</th>
         <th class="date-column" data-sort-date="2025-03-04">Mar 04, 2025</th>
-        <th class="date-column active" data-sort-date="2025-04-02">Apr 02, 2025</th>
+        <th class="date-column" data-sort-date="2025-04-02">Apr 02, 2025</th>
+        <th class="date-column active" data-sort-date="2025-05-07">May 07, 2025</th>
       </tr>
     </thead>
     <tbody>
@@ -22,86 +23,121 @@ description: "Ranking the cities (and regions) I've spent nontrivial time in on 
         <th>New York City</th>
         <td>1</td>
         <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <th>Tokyo</th>
+        <td></td>
+        <td></td>
+        <td>2</td>
       </tr>
       <tr>
         <th>San Francisco + The Bay</th>
         <td>2</td>
         <td>2</td>
+        <td>3</td>
       </tr>
       <tr>
         <th>Chicago</th>
         <td>3</td>
         <td>4</td>
+        <td>5</td>
       </tr>
       <tr>
         <th>London</th>
         <td>4</td>
         <td>3</td>
+        <td>4</td>
       </tr>
       <tr>
         <th>Cambridge, MA</th>
         <td>5</td>
         <td>8</td>
+        <td>9</td>
       </tr>
       <tr>
         <th>Paris</th>
         <td>6</td>
         <td>5</td>
+        <td>6</td>
+      </tr>
+      <tr>
+        <th>Kyoto</th>
+        <td></td>
+        <td></td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <th>Osaka</th>
+        <td></td>
+        <td></td>
+        <td>11</td>
       </tr>
       <tr>
         <th>Boston</th>
         <td>7</td>
         <td>9</td>
-      </tr>
+        <td>12</td>
+      </tr>      
       <tr>
         <th>Manchester</th>
         <td>8</td>
         <td>10</td>
+        <td>13</td>
       </tr>
       <tr>
         <th>Zurich</th>
         <td>9</td>
         <td>11</td>
+        <td>14</td>
       </tr>
       <tr>
         <th>Florence</th>
         <td>10</td>
         <td>14</td>
+        <td>17</td>
       </tr>
       <tr>
         <th>Rome</th>
         <td>11</td>
         <td>15</td>
+        <td>18</td>
       </tr>
       <tr>
         <th>Freiburg</th>
         <td>12</td>
         <td>16</td>
+        <td>19</td>
       </tr>
       <tr>
         <th>Cinque Terre</th>
         <td>13</td>
         <td>17</td>
+        <td>20</td>
       </tr>
       <tr>
         <th>Madrid</th>
         <td></td>
         <td>12</td>
+        <td>15</td>
       </tr>
       <tr>
         <th>Barcelona</th>
         <td></td>
         <td>6</td>
+        <td>7</td>
       </tr>
       <tr>
         <th>South of France</th>
         <td></td>
         <td>13</td>
+        <td>16</td>
       </tr>
       <tr>
         <th>Monaco</th>
         <td></td>
         <td>7</td>
+        <td>8</td>
       </tr>
     </tbody>
   </table>
@@ -115,94 +151,130 @@ description: "Ranking the cities (and regions) I've spent nontrivial time in on 
       <tr>
         <th class="item-column">Item</th>
         <th class="date-column" data-sort-date="2025-03-04">Mar 04, 2025</th>
-        <th class="date-column active" data-sort-date="2025-04-02">Apr 02, 2025</th>
+        <th class="date-column" data-sort-date="2025-04-02">Apr 02, 2025</th>
+        <th class="date-column active" data-sort-date="2025-05-07">May 07, 2025</th>
       </tr>
     </thead>
     <tbody>
       <tr>
+        <th>Tokyo</th>
+        <td></td>
+        <td></td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <th>Kyoto</th>
+        <td></td>
+        <td></td>
+        <td>7</td>
+      </tr>
+      <tr>
+        <th>Osaka</th>
+        <td></td>
+        <td></td>
+        <td>9</td>
+      </tr>
+      <tr>
         <th>New York City</th>
         <td>1</td>
         <td>1</td>
+        <td>2</td>
       </tr>
       <tr>
         <th>Paris</th>
         <td>2</td>
         <td>3</td>
+        <td>4</td>
       </tr>
       <tr>
         <th>London</th>
         <td>3</td>
         <td>2</td>
+        <td>3</td>
       </tr>
       <tr>
         <th>San Francisco + The Bay</th>
         <td>4</td>
         <td>4</td>
+        <td>5</td>
       </tr>
       <tr>
         <th>Cinque Terre</th>
         <td>5</td>
         <td>8</td>
+        <td>11</td>
       </tr>
       <tr>
         <th>Florence</th>
         <td>6</td>
         <td>10</td>
+        <td>13</td>
       </tr>
       <tr>
         <th>Chicago</th>
         <td>7</td>
         <td>11</td>
+        <td>14</td>
       </tr>
       <tr>
         <th>Cambridge, MA</th>
         <td>8</td>
         <td>14</td>
+        <td>17</td>
       </tr>
       <tr>
         <th>Rome</th>
         <td>9</td>
         <td>12</td>
+        <td>15</td>
       </tr>
       <tr>
         <th>Zurich</th>
         <td>10</td>
         <td>13</td>
+        <td>16</td>
       </tr>
       <tr>
         <th>Manchester</th>
         <td>11</td>
         <td>15</td>
+        <td>18</td>
       </tr>
       <tr>
         <th>Boston</th>
         <td>12</td>
         <td>16</td>
+        <td>19</td>
       </tr>
       <tr>
         <th>Freiburg</th>
         <td>13</td>
         <td>17</td>
+        <td>20</td>
       </tr>
       <tr>
         <th>Madrid</th>
         <td></td>
         <td>9</td>
+        <td>12</td>
       </tr>
       <tr>
         <th>Barcelona</th>
         <td></td>
         <td>6</td>
+        <td>8</td>
       </tr>
       <tr>
         <th>South of France</th>
         <td></td>
         <td>5</td>
+        <td>6</td>
       </tr>
       <tr>
         <th>Monaco</th>
         <td></td>
         <td>7</td>
+        <td>10</td>
       </tr>
     </tbody>
   </table>
